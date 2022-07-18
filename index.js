@@ -37,21 +37,6 @@ module.exports = class JimStart {
       }
 
         // Execute command
-        const c = spawn(command, [], {shell: true});
-        c.stdout.on('data', data => {
-            console.log(data.toString());
-          });
-          
-          c.stderr.on('data', data => {
-            console.error(data.toString());
-          });
-
-          c.on('error', (error) => {
-            console.error(error.toString());
-          });
-          
-          c.on('close', (code) => {
-            console.log(`child process exited with code ${code}`);
-          });
+        const c = spawn(command, [], {shell: true, stdio: 'inherit'});
     }
 }
